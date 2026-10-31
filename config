@@ -1,0 +1,59 @@
+# Colorful i3status configuration
+# see "man i3status" for documentation.
+
+general {
+    colors = true
+    interval = 2
+    separator = "  "
+    markup = "pango"
+    color_good = "#a6e3a1"
+    color_degraded = "#f9e2af"
+    color_bad = "#f38ba8"
+    color_separator = "#585b70"
+}
+
+order += "ipv4"
+order += "disk /"
+order += "ethernet enp42s0"
+order += "memory"
+order += "load"
+order += "tztime local"
+
+disk "/" {
+    format = "<span foreground='#89b4fa'>DISK</span> %avail free"
+    prefix_type = custom
+    low_threshold = 10
+    threshold_type = percentage_avail
+    format_below_threshold = "<span foreground='#f38ba8'>DISK</span> %avail free"
+    color_good = "#89b4fa"
+    color_bad = "#f38ba8"
+}
+
+ethernet enp42s0 {
+    format_up = "<span foreground='#a6e3a1'>NET</span> %ip (%speed)"
+    format_down = "<span foreground='#f38ba8'>NET</span> down"
+    color_good = "#a6e3a1"
+    color_bad = "#f38ba8"
+}
+
+memory {
+    format = "<span foreground='#cba6f7'>MEM</span> %used / %total"
+    format_degraded = "<span foreground='#f9e2af'>MEM</span> %available left"
+    threshold_degraded = "20%"
+    threshold_critical = "10%"
+    color_good = "#cba6f7"
+    color_degraded = "#f9e2af"
+    color_bad = "#f38ba8"
+}
+
+load {
+    format = "<span foreground='#fab387'>LOAD</span> %1min %5min %15min"
+    max_threshold = "3.0"
+    format_above_threshold = "<span foreground='#f38ba8'>LOAD</span> %1min %5min %15min"
+    color_good = "#fab387"
+    color_bad = "#f38ba8"
+}
+
+tztime local {
+    format = "<span foreground='#94e2d5'>TIME</span> %Y-%m-%d %H:%M:%S"
+}
