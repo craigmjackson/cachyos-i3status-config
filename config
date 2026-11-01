@@ -17,6 +17,7 @@ order += "disk /"
 order += "ethernet enp42s0"
 order += "memory"
 order += "load"
+order += "volume master"
 order += "tztime local"
 
 disk "/" {
@@ -52,6 +53,12 @@ load {
     format_above_threshold = "<span foreground='#f38ba8'>LOAD</span> %1min %5min %15min"
     color_good = "#fab387"
     color_bad = "#f38ba8"
+}
+
+volume master {
+    format = "<span foreground='#f5c2e7'>VOLUME</span> %volume"
+    format_muted = "<span foreground='#f38ba8'>VOLUME</span> muted"
+    device = "default"
 }
 
 tztime local {
